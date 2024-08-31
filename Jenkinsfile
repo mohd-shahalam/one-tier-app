@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Git checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/mohd-shahalam/DevOPs_Project1.git'
+                git branch: 'main', url: 'https://github.com/mohd-shahalam/one-tier-app.git'
             }
         }
         stage('Sending Docker File to Ansible Server Over SSH') {
