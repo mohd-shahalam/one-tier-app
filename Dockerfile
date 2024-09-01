@@ -9,7 +9,7 @@ RUN sed -i 's|mirrorlist=|#mirrorlist=|g' /etc/yum.repos.d/CentOS-*.repo && \
 RUN yum install -y httpd zip unzip
 
 # Add the photogenic template to the web server
-ADD https://www.free-css.com/assets/files/free-css-templates/download/page254/photogenic.zip /var/www/html
+COPY /home/ubuntu/photogenic.zip /var/www/html
 
 # Set the working directory and unzip the downloaded template
 WORKDIR /var/www/html/
