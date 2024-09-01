@@ -30,8 +30,8 @@ pipeline {
         }
         stage('Run images.... ') {
             steps {
-                sshagent(['jenkins-ssh']) {
-                    sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.31.93 "docker run -d -p 8081:80 --name nginx-app-jenkins shahalam8535/nginx-image:latest"'
+                sshagent(['k8s-ssh']) {
+                    sh 'scp -o StrictHostKeyChecking=no /home/ubuntu/one-tier-app/k8s/* ubuntu@172.31.24.209:/home/ubuntu'
                 }
             }
         }

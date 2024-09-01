@@ -1,0 +1,7 @@
+- hosts: all
+  become: true
+  tasks:
+    - name: create new Deployment
+	  command: kubectl apply -f /home/ubuntu/one-tier-app/k8s/deployment.yml
+    - name: create new Deployment
+	  command: kubectl apply -f /home/ubuntu/one-tier-app/k8s/service.yml
