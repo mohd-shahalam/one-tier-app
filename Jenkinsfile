@@ -10,7 +10,8 @@ pipeline {
         stage('Sending Docker File to Ansible Server Over SSH') {
             steps {
                 sshagent(['jenkins-ssh']) {
-                    sh 'scp -o StrictHostKeyChecking=no Dockerfile ubuntu@172.31.31.93:/home/ubuntu/'
+					sh 'git clone https://github.com/mohd-shahalam/one-tier-app.git'
+                    sh 'scp -o StrictHostKeyChecking=no /home/ubuntu/one-tier-app/* ubuntu@172.31.31.93:/home/ubuntu/'
                 }
             }
         }
@@ -28,10 +29,11 @@ pipeline {
                 }
             }
         }
-        stage('Run images.... ') {
+        stage('Copy FIles from Ansible to K8s server ') {
             steps {
-                sshagent(['k8s-ssh']) {
-                    sh 'scp -o StrictHostKeyChecking=no /home/ubuntu/one-tier-app/k8s/* ubuntu@172.31.24.209:/home/ubuntu'
+                sshagent(['jenkins-ssh']) {
+					sh 'git clone https://github.com/mohd-shahalam/one-tier-app.git'
+                    sh 'scp -o StrictHostKeyChecking=no /home/ubuntu/one-tier-app/k8s/* ubuntu@172.31.24.209:/home/ubuntu/one-tier-app/k8s/*'
                 }
             }
         }
@@ -49,3 +51,4 @@ pipeline {
         }
     }
 }
+
