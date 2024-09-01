@@ -10,8 +10,7 @@ pipeline {
         stage('Sending Docker File to Ansible Server Over SSH') {
             steps {
                 sshagent(['jenkins-ssh']) {
-					sh 'git clone https://github.com/mohd-shahalam/one-tier-app.git'
-                    sh 'scp -o StrictHostKeyChecking=no /home/ubuntu/one-tier-app/* ubuntu@172.31.31.93:/home/ubuntu/'
+	                    sh 'scp -o StrictHostKeyChecking=no /home/ubuntu/one-tier-app/* ubuntu@172.31.31.93:/home/ubuntu/'
                 }
             }
         }
